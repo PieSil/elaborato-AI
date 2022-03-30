@@ -1,6 +1,6 @@
 import os
 
-class ResultManager:
+class ResultFileManager:
 
     def __init__(self, dir):
         self.dir = dir

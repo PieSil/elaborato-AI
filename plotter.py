@@ -1,10 +1,10 @@
 import numpy
 import matplotlib.pyplot as plt
 import constants as c
-from utils.plot_utility import ResultManager
+from utils.result_utility import ResultFileManager
 import os
 
-resultManager = ResultManager(c.RESULTS_DIR)
+resultManager = ResultFileManager(c.RESULTS_DIR)
 
 sizes = resultManager.loadResult('sizes.txt')
 unweightedUnsolved = resultManager.loadResult('unweighted_unsolved.txt')[0]

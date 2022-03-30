@@ -1,5 +1,5 @@
-from utils.plot_utility import ResultManager
-from algorithm.csp_solver import minConflicts
+from utils.result_utility import ResultFileManager
+from algorithm.solver import minConflicts
 import numpy
 import time
 from utils.problem_utility import ProblemFileManager
@@ -15,14 +15,14 @@ unweightedTimes = {}
 weightedTimes = {}
 size = c.START_SIZE
 sizes = []
-resultManager = ResultManager(c.RESULTS_DIR)
+resultManager = ResultFileManager(c.RESULTS_DIR)
 
-for i in range(c.MAX_PROBLEM_RANGE):
+for i in range(c.N_DIFFERENT_SIZE_PROBLEMS):
     sizes.append(size)
     size = size + c.SIZE_INCREMENT
 
 problemFileManager = ProblemFileManager()
-problems = problemFileManager.loadProblemSet(c.START_SIZE, c.SIZE_INCREMENT, c.N_SAME_SIZE_PROBLEMS, c.MAX_PROBLEM_RANGE)
+problems = problemFileManager.loadProblemSet(c.START_SIZE, c.SIZE_INCREMENT, c.N_SAME_SIZE_PROBLEMS, c.N_DIFFERENT_SIZE_PROBLEMS)
 
 for i in sizes:
     unweightedSteps[i] = []
