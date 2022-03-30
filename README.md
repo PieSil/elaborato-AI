@@ -23,8 +23,8 @@ ogni problema così generato viene memorizzato in un file .txt all'interno della
 
 Uno script che carica i problemi contenuti nella directory "csps" ed esegue, su ognuno di essi, 
 l'algoritmo Min-Conflicts sia in modo classico (senza euristiche di alcun tipo), che utilizzando l'euristica constraint weighting.
-Lo script registra i tempi di esecuzione ed il numero di passi impiegato per risolvere ciascun problema, successivamente, detto <img src="https://render.githubusercontent.com/render/math?math=S"> l'insieme di problemi che hanno la stessa dimensione
-calcola la media del tempo di esecuzione e del numero di passi per ogni problema in <img src="https://render.githubusercontent.com/render/math?math=S">.
+Lo script registra i tempi di esecuzione ed il numero di passi impiegato per risolvere ciascun problema, successivamente, detto <img src="https://render.githubusercontent.com/render/math?math=S"> l'insieme di problemi che hanno la stessa dimensione,
+calcola la media del tempo di esecuzione e del numero di passi dei problemi in <img src="https://render.githubusercontent.com/render/math?math=S">.
 I valori medi così calcolati sono poi memorizzati sotto forma di file .txt nella directory "results".
 Lo script registra e memorizza allo stesso modo il numero totale di problemi risolti e non risolti utilizzando sia l'algoritmo classico che la versione con constraint-weighting.
 
@@ -59,7 +59,7 @@ Definisce la classe ResultFileManager, utilizzata per memorizzare e caricare i r
 
 Definisce la classe ProblemFileManager, utilizzata per memorizzare e caricare i problemi creati tramite lo script: problem_generator.py
 
-### utils.segment:functions
+### utils.segment_functions
 
 Definisce delle funzioni utilizzate durante la procedura di generazione di un problema, tali funzioni sono utilizzate per verificare se due segmenti 
 <img src="https://render.githubusercontent.com/render/math?math=(P1, P2)"> e <img src="https://render.githubusercontent.com/render/math?math=(Q1, Q2)"> si intersecano o meno.
