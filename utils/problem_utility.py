@@ -25,7 +25,7 @@ class ProblemFileManager:
                 f.write(edgeData)
             f.write('end')
 
-        print('Problem saved in ', path)
+        print('Problem saved to ', path)
 
     def loadProblem(self, filename):
         problem = None

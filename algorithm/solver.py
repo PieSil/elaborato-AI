@@ -28,7 +28,7 @@ def minConflicts(problem, maxSteps, useWeights):
             var = random.choice(list(conflictedVars))
             value = getMinimizingValue(var, currentAssignment, problem)
             currentAssignment[var] = value
-            nConflicts, conflictedVars = problem.calculateConflicts(currentAssignment, useWeights, True)
+            nConflicts, conflictedVars = problem.calculateConflicts(currentAssignment, useWeights)
     return None, i
 
 
