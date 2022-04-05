@@ -17,6 +17,23 @@ weightedMeanSteps = resultManager.loadResult('weighted_mean_steps.txt')
 unweightedMeanTimes = resultManager.loadResult('unweighted_mean_times.txt')
 weightedMeanTimes = resultManager.loadResult('weighted_mean_times.txt')
 
+timesPercentageChange = []
+stepsPercentageChange = []
+
+for i in range(len(sizes)):
+    change = (unweightedMeanTimes[i] - weightedMeanTimes[i])/(unweightedMeanTimes[i])
+    timesPercentageChange.insert(i, change*100)
+
+for i in range(len(sizes)):
+    change = (unweightedMeanSteps[i] - weightedMeanSteps[i]) / (unweightedMeanSteps[i])
+    stepsPercentageChange.insert(i, change * 100)
+
+meanTimesPC = numpy.mean(timesPercentageChange)
+meanStepsPC = numpy.mean(stepsPercentageChange)
+
+print('Mean execution times percentage change ', meanTimesPC)
+print('Mean number of steps percentage change: ', meanStepsPC)
+
 barNames = ['Unweighted Solved', 'Unweighted Unsolved', 'Weighted Solved', 'Weighted Unsolved']
 solvedData = [unweightedSolved, unweightedUnsolved, weightedSolved, weightedUnsolved]
 barColors = ['red', 'maroon', 'green', 'darkgreen']
