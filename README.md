@@ -31,7 +31,7 @@ Lo script registra e memorizza allo stesso modo il numero totale di problemi ris
 ### plotter.py
 
 Lo script carica i risultati contenuti nei file presenti nella directory "results" e li utilizza per realizzare dei plot in modo da visualizzare più chiaramente i risultati.
-Lo script stampa inoltre la variazione percentuale media dei valori medi del numero di passi e dei tempi di esecuzione registrati.
+Lo script inoltre stampa su console la variazione percentuale media dei valori medi del numero di passi e dei tempi di esecuzione registrati.
 I plot sono poi memorizzati sotto forma di file .png nella directory "plots".
 
 ### algorithm.node
@@ -64,5 +64,9 @@ Definisce la classe ProblemFileManager, utilizzata per memorizzare e caricare i 
 
 Definisce delle funzioni utilizzate durante la procedura di generazione di un problema, tali funzioni sono utilizzate per verificare se due segmenti 
 <img src="https://render.githubusercontent.com/render/math?math=(P1, P2)"> e <img src="https://render.githubusercontent.com/render/math?math=(Q1, Q2)"> si intersecano o meno.
+
+### utils.plot_utility
+
+Definisce delle funzioni usate dallo script plotter.py, come quella per il calcolo della variazione percentuale media e per realizzare e salvare un plot.
 
 
