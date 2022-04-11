@@ -31,6 +31,7 @@ Lo script registra e memorizza allo stesso modo il numero totale di problemi ris
 ### plotter.py
 
 Lo script carica i risultati contenuti nei file presenti nella directory "results" e li utilizza per realizzare dei plot in modo da visualizzare più chiaramente i risultati.
+Lo script stampa inoltre la variazione percentuale media dei valori medi del numero di passi e dei tempi di esecuzione registrati.
 I plot sono poi memorizzati sotto forma di file .png nella directory "plots".
 
 ### algorithm.node
