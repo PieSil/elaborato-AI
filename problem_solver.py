@@ -22,7 +22,8 @@ for i in range(c.N_DIFFERENT_SIZE_PROBLEMS):
     size = size + c.SIZE_INCREMENT
 
 problemFileManager = ProblemFileManager()
-problems = problemFileManager.loadProblemSet(c.START_SIZE, c.SIZE_INCREMENT, c.N_SAME_SIZE_PROBLEMS, c.N_DIFFERENT_SIZE_PROBLEMS)
+problems = problemFileManager.loadProblemSet(c.START_SIZE, c.SIZE_INCREMENT, c.N_SAME_SIZE_PROBLEMS,
+                                             c.N_DIFFERENT_SIZE_PROBLEMS)
 
 for i in sizes:
     unweightedSteps[i] = []
@@ -32,9 +33,9 @@ for i in sizes:
 
 problemIndex = 0
 
-for problem in problems:
+for i, problem in enumerate(problems):
     uStartTime = time.time()
-    uSolution, uSteps = minConflicts(problem, c.MAX_STEPS, False)
+    uSolution, uSteps = minConflicts(problem, c.MAX_STEPS, useWeights=False)
     uTotalTime = time.time() - uStartTime
     unweightedSteps[problem.size].append(uSteps)
     unweightedTimes[problem.size].append(uTotalTime)
@@ -44,7 +45,7 @@ for problem in problems:
         unweightedUnsolved = unweightedUnsolved + 1
 
     wStartTime = time.time()
-    wSolution, wSteps = minConflicts(problem, c.MAX_STEPS, True)
+    wSolution, wSteps = minConflicts(problem, c.MAX_STEPS, useWeights=True)
     wTotalTime = time.time() - wStartTime
     weightedSteps[problem.size].append(wSteps)
     weightedTimes[problem.size].append(wTotalTime)
@@ -52,16 +53,12 @@ for problem in problems:
         weightedSolved = weightedSolved + 1
     else:
         weightedUnsolved = weightedUnsolved + 1
-    print('Problem done, Size = ', problem.size, ', Index = ', problemIndex % 50)
-    problemIndex = problemIndex + 1
+    print('Problem done, Size = ', problem.size, ', Index = ', i % c.N_SAME_SIZE_PROBLEMS)
 
 unweightedMeanSteps = []
 weightedMeanSteps = []
 unweightedMeanTimes = []
 weightedMeanTimes = []
-barNames = ['Unweighted Solved', 'Unweighted Unsolved', 'Weighted Solved', 'Weighted Unsolved']
-solvedData = [unweightedSolved, unweightedUnsolved, weightedSolved, weightedUnsolved]
-barColors = ['red', 'maroon', 'green', 'darkgreen']
 
 for i in sizes:
     uMeanExecutionTime = numpy.mean(unweightedTimes[i])
