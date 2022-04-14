@@ -10,7 +10,7 @@ def getMinimizingValue(var, assignment, problem):
 
     for color in range(problem.colors):
         testAssignment[var] = color
-        currentConflicts, conflicted = problem.calculateConflicts(testAssignment)
+        currentConflicts, conflicted = problem.conflicts(testAssignment)
         if minimumConflicts is None or currentConflicts < minimumConflicts:
             minimumConflicts = currentConflicts
             minValue = color
@@ -20,7 +20,7 @@ def getMinimizingValue(var, assignment, problem):
 
 def minConflicts(problem, maxSteps, useWeights):
     currentAssignment = AssignmentGenerator(problem.nodes, problem.colors).generate()
-    nConflicts, conflictedVars = problem.calculateConflicts(currentAssignment, adjustWeights=False)
+    nConflicts, conflictedVars = problem.conflicts(currentAssignment, adjustWeights=False)
     i = 0
     for i in range(maxSteps):
         if nConflicts == 0:
@@ -29,7 +29,7 @@ def minConflicts(problem, maxSteps, useWeights):
             var = random.choice(list(conflictedVars))
             value = getMinimizingValue(var, currentAssignment, problem)
             currentAssignment[var] = value
-            nConflicts, conflictedVars = problem.calculateConflicts(currentAssignment, adjustWeights=useWeights)
+            nConflicts, conflictedVars = problem.conflicts(currentAssignment, adjustWeights=useWeights)
     return None, i
 
 

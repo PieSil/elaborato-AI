@@ -54,7 +54,7 @@ class Problem:
             self.nodes.insert(id, (Node(coord[0], coord[1], id)))
             used_coords[coord] = self.nodes[id]
 
-    def calculateConflicts(self, assignment, adjustWeights=False):
+    def conflicts(self, assignment, adjustWeights=False):
         # calculates total number of conflicts (or sum of weights in constraint weighting)
         # returns number of conflicts and a list of conflicted edges
         nConflicts = 0
