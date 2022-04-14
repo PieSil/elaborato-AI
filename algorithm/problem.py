@@ -14,6 +14,9 @@ class Problem:
         self.edgeWeights = {}
 
     def build(self):
+        # scatters nodes
+        # then for each pair of nodes checks if an edge between those nodes can be created
+
         self.scatterNodes()
 
         for node1 in self.nodes:
@@ -22,6 +25,7 @@ class Problem:
                         node2.neighbours) < self.max_neighs:
                     edge_intersects = False
 
+                    # iterate over all edges anc check that none of them intersects with new potential edge
                     for edge in self.edges:
                         if not edge_intersects and intersects(node1, node2, edge[0], edge[1]):
                             edge_intersects = True
@@ -51,19 +55,25 @@ class Problem:
             used_coords[coord] = self.nodes[id]
 
     def calculateConflicts(self, assignment, adjustWeights=False):
+        # calculates total number of conflicts (or sum of weights in constraint weighting)
+        # returns number of conflicts and a list of conflicted edges
         nConflicts = 0
         conflicted = set()
+
         for edge in self.edges:
             if assignment[edge[0].id] == assignment[edge[1].id]:
                 nConflicts = nConflicts + self.edgeWeights[edge]
                 conflicted.add(edge[0].id)
                 conflicted.add(edge[1].id)
+
+                # used in constraint weighting, increase weight of conflicted edges
                 if adjustWeights:
                     self.edgeWeights[edge] = self.edgeWeights[edge] + 1
 
         return nConflicts, conflicted
 
     def toString(self):
+        # creates a string that sums up the problem's definition
         result = 'Problem description:\n'
         result = result + 'Number of nodes: ' + str(self.size) + '\n'
         result = result + 'Number of colors: ' + str(self.colors) + '\n'

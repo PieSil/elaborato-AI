@@ -5,6 +5,8 @@ import constants as c
 
 
 def percentageChange(nElements, previous, current):
+    # calculates percentage change between two values
+
     valuesPercentageChange = []
     for i in range(nElements):
         change = (previous[i] - current[i]) / (previous[i])
@@ -13,6 +15,8 @@ def percentageChange(nElements, previous, current):
 
 
 def saveResultGraph(x, y, labels, xlabel, ylabel, fileName, colors, markers):
+    # plots one or multiple graphs and saves it
+
     path = os.path.join(c.PLOTS_DIR, fileName)
     for i in range(x.shape[0]):
         x_data = x[i].tolist()[0]
@@ -26,6 +30,8 @@ def saveResultGraph(x, y, labels, xlabel, ylabel, fileName, colors, markers):
     plt.cla()
 
 def saveResultBar(data, colors, names, fileName):
+    # plots a bar graph and saves it
+
     path = os.path.join(c.PLOTS_DIR, fileName)
     for i in range(len(data)):
         plt.bar(i, data[i], color=colors[i], width=0.5, label=names[i])

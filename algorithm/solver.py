@@ -2,6 +2,8 @@ import random
 
 
 def getMinimizingValue(var, assignment, problem):
+    # checks which color minimizes conflicts if assigned to variable and returns it
+
     testAssignment = assignment
     minimumConflicts = None
     minValue = assignment[var]
@@ -21,14 +23,13 @@ def minConflicts(problem, maxSteps, useWeights):
     nConflicts, conflictedVars = problem.calculateConflicts(currentAssignment, adjustWeights=False)
     i = 0
     for i in range(maxSteps):
-        # print('Iteration: ', i, ' Number of conflicts: ', nConflicts)
         if nConflicts == 0:
             return currentAssignment, i
         else:
             var = random.choice(list(conflictedVars))
             value = getMinimizingValue(var, currentAssignment, problem)
             currentAssignment[var] = value
-            nConflicts, conflictedVars = problem.calculateConflicts(currentAssignment, useWeights)
+            nConflicts, conflictedVars = problem.calculateConflicts(currentAssignment, adjustWeights=useWeights)
     return None, i
 
 
@@ -40,12 +41,7 @@ class AssignmentGenerator:
     def generate(self):
         # generate random assignment
         assignment = {}
-        # print('Generating random assignment... ')
         for node in self.nodes:
             assignment[node.id] = random.randint(0, self.colorsNumber)
-
-        # print("Random assignment generated: ")
-        # for node in assignment.keys():
-            # print("Node: ", node, " Color: ", assignment[node])
 
         return assignment

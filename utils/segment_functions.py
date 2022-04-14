@@ -1,4 +1,6 @@
 def orientation(point1, point2, point3):
+    # given three point p1, p2, p3 check orientation of (p1, p2) and (p2, p3)
+
     # return values:
     # 0: collinear points
     # 1: clockwise points

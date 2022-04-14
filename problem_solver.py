@@ -17,6 +17,7 @@ size = c.START_SIZE
 sizes = []
 resultManager = ResultFileManager(c.RESULTS_DIR)
 
+# create list of possible problems' sizes
 for i in range(c.N_DIFFERENT_SIZE_PROBLEMS):
     sizes.append(size)
     size = size + c.SIZE_INCREMENT
@@ -24,7 +25,7 @@ for i in range(c.N_DIFFERENT_SIZE_PROBLEMS):
 problemFileManager = ProblemFileManager()
 problems = problemFileManager.loadProblemSet(c.START_SIZE, c.SIZE_INCREMENT, c.N_SAME_SIZE_PROBLEMS,
                                              c.N_DIFFERENT_SIZE_PROBLEMS)
-
+# initialize lists to store data
 for i in sizes:
     unweightedSteps[i] = []
     weightedSteps[i] = []
@@ -33,6 +34,8 @@ for i in sizes:
 
 problemIndex = 0
 
+# run min-conflicts and constraint weighting on each problem and record execution time, number of steps
+# and total solved and unsolved problems
 for i, problem in enumerate(problems):
     uStartTime = time.time()
     uSolution, uSteps = minConflicts(problem, c.MAX_STEPS, useWeights=False)
@@ -60,6 +63,7 @@ weightedMeanSteps = []
 unweightedMeanTimes = []
 weightedMeanTimes = []
 
+# calculate mean of execution time and number of steps for each problem's size
 for i in sizes:
     uMeanExecutionTime = numpy.mean(unweightedTimes[i])
     unweightedMeanTimes.append(uMeanExecutionTime)
@@ -73,22 +77,16 @@ for i in sizes:
     wMeanSteps = numpy.mean(weightedSteps[i])
     weightedMeanSteps.append(wMeanSteps)
 
+# save results to .txt files
+
 resultManager.saveResult('sizes.txt', sizes)
-
 resultManager.saveResult('unweighted_mean_times.txt', unweightedMeanTimes)
-
 resultManager.saveResult('weighted_mean_times.txt', weightedMeanTimes)
-
 resultManager.saveResult('unweighted_mean_steps.txt', unweightedMeanSteps)
-
 resultManager.saveResult('weighted_mean_steps.txt', weightedMeanSteps)
-
 resultManager.saveResult('unweighted_solved.txt', [unweightedSolved])
-
 resultManager.saveResult('unweighted_unsolved.txt', [unweightedUnsolved])
-
 resultManager.saveResult('weighted_solved.txt', [weightedSolved])
-
 resultManager.saveResult('weighted_unsolved.txt', [weightedUnsolved])
 
 

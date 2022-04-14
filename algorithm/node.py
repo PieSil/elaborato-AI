@@ -7,7 +7,6 @@ class Node:
 
     def isNeighbour(self, node):
         result = False
-
         if node in self.neighbours:
             result = True
 
