@@ -34,17 +34,17 @@ Lo script carica i risultati contenuti nei file presenti nella directory "result
 Lo script inoltre stampa su console la variazione percentuale media dei valori medi del numero di passi e dei tempi di esecuzione registrati.
 I plot sono poi memorizzati sotto forma di file .png nella directory "plots".
 
-### algorithm.node
+### algorithm/node.py
 
 Contiene la definizione della classe Node, rappresentata da un id numerico, una coordinata x ed un coordinata y (utilizzate durante la generazione di un problema di Map-Coloring) 
 ed un insieme di vicini.
 
-### algorithm.solver
+### algorithm/solver.py
 
 Contiene la definizione dell'algoritmo Min-Conflicts, l'euristica constraint weighting può essere abilitata o disabilitata attraverso l'utilizzo del 
 parametro useWeights.
 
-### algorithm.problem
+### algorithm/problem.py
 
 Contiene la definizione della classe Problem, caratterizzata da numero di nodi (dimensione), numero di colori da utilizzare, insieme dei nodi, 
 insieme degli archi, un dizionario che associa un peso ad ogni arco (i pesi sono inizializzati a 1) ed infine il numero massimo di vicini che un nodo 
@@ -52,20 +52,20 @@ può avere, è stato deciso di limitare il numero massimo di vicini di ciascun n
 si ottenevano spesso problemi in cui un singolo nodo (od un insieme ristretto di nodi) risultava collegato a numerosi nodi i quali non erano però collegati tra loro, 
 rendendo quindi triviale il problema di Map-Coloring; detta <img src="https://render.githubusercontent.com/render/math?math=n"> la dimensione del problema, il valore massimo di vicini per ciascun nodo è stato fissato a <img src="https://render.githubusercontent.com/render/math?math=\sqrt{n}">.
 
-### utils.result_utility
+### utils/result_utility.py
 
 Definisce la classe ResultFileManager, utilizzata per memorizzare e caricare i risultati calcolati dallo script: problem_solver.py
 
-### utils.problem_utility
+### utils/problem_utility.py
 
 Definisce la classe ProblemFileManager, utilizzata per memorizzare e caricare i problemi creati tramite lo script: problem_generator.py
 
-### utils.segment_functions
+### utils/segment_functions.py
 
 Definisce delle funzioni utilizzate durante la procedura di generazione di un problema, tali funzioni sono utilizzate per verificare se due segmenti 
 <img src="https://render.githubusercontent.com/render/math?math=(P1, P2)"> e <img src="https://render.githubusercontent.com/render/math?math=(Q1, Q2)"> si intersecano o meno.
 
-### utils.plot_utility
+### utils/plot_utility.py
 
 Definisce delle funzioni usate dallo script plotter.py, come quella per il calcolo della variazione percentuale media e per realizzare e salvare un plot.
 
