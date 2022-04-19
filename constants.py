@@ -1,7 +1,7 @@
 import os
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-MAX_STEPS = 10000
+MAX_STEPS = 20000
 SIZE_INCREMENT = 20
 START_SIZE = 20
 N_COLORS = 4

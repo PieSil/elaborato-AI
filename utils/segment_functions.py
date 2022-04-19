@@ -44,10 +44,15 @@ def intersects(p1, p2, q1, q2):
     # and (q1, q2, p2) have different orientations.
 
     # 2)  (p1, p2, q1), (p1, p2, q2), (q1, q2, p1), and (q1, q2, p2) are all collinear and
-    # the x-projections of (p1, q1) and (p2, q2) intersect
-    # the y-projections of (p1, q1) and (p2, q2) intersect
+    # the x-projections of (p1, p2) and (q1, q2) intersect
+    # the y-projections of (p1, p2) and (q1, q2) intersect
 
     result = False
+    onlyColl = False
+
+    if p1 == q1 or p1 == q2 or p2 == q1 or p2 == q2:
+        # segments have one extreme in common, only check collinearity
+        onlyColl = True
 
     # find all orientations:
     orientation1 = orientation(p1, p2, q1)
@@ -55,18 +60,19 @@ def intersects(p1, p2, q1, q2):
     orientation3 = orientation(q1, q2, p1)
     orientation4 = orientation(q1, q2, p2)
 
-    # check case 1):
-    if (orientation1 != orientation2) and (orientation3 != orientation4):
-        result = True
+    if not onlyColl:
+        # check case 1):
+        if (orientation1 != orientation2) and (orientation3 != orientation4):
+            result = True
 
     # check case 2) for each triplet
-    elif orientation1 == 0 and liesOnSegment(p1, p2, q1):
+    if p1 != q1 and p2 != q1 and orientation1 == 0 and liesOnSegment(p1, p2, q1):
         result = True
-    elif (orientation2 == 0) and liesOnSegment(p1, p2, q2):
+    elif p1 != q2 and p2 != q2 and (orientation2 == 0) and liesOnSegment(p1, p2, q2):
         result = True
-    elif (orientation3 == 0) and liesOnSegment(q1, q2, p1):
+    elif q1 != p1 and q2 != p1 and (orientation3 == 0) and liesOnSegment(q1, q2, p1):
         result = True
-    elif (orientation4 == 0) and liesOnSegment(q1, q2, p2):
+    elif q1 != p2 and q2 != p2 and (orientation4 == 0) and liesOnSegment(q1, q2, p2):
         result = True
 
     return result
