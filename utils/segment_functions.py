@@ -1,5 +1,5 @@
 def orientation(point1, point2, point3):
-    # given three point p1, p2, p3 check orientation of (p1, p2) and (p2, p3)
+    # given three points p1, p2, p3 check orientation of (p1, p2) and (p2, p3)
 
     # return values:
     # 0: collinear points
@@ -40,33 +40,33 @@ def liesOnSegment(p1, p2, q):
 def intersects(p1, p2, q1, q2):
     # two segments (p1, p2) and (q1, q2) intersects iff one of the following two conditions is verified:
 
-    # 1)  (p1, q1, p2) and (p1, q1, q2) have different orientations and (p2, q2, p1)
-    # and (p2, q2, q1) have different orientations.
+    # 1)  (p1, p2, q1) and (p1, p2, q2) have different orientations and (q1, q2, p1)
+    # and (q1, q2, p2) have different orientations.
 
-    # 2)  (p1, q1, p2), (p1, q1, q2), (p2, q2, p1), and (p2, q2, q1) are all collinear and
+    # 2)  (p1, p2, q1), (p1, p2, q2), (q1, q2, p1), and (q1, q2, p2) are all collinear and
     # the x-projections of (p1, q1) and (p2, q2) intersect
     # the y-projections of (p1, q1) and (p2, q2) intersect
 
     result = False
 
     # find all orientations:
-    orientation1 = orientation(p1, q1, p2)
-    orientation2 = orientation(p1, q1, q2)
-    orientation3 = orientation(p2, q2, p1)
-    orientation4 = orientation(p2, q2, q1)
+    orientation1 = orientation(p1, p2, q1)
+    orientation2 = orientation(p1, p2, q2)
+    orientation3 = orientation(q1, q2, p1)
+    orientation4 = orientation(q1, q2, p2)
 
     # check case 1):
     if (orientation1 != orientation2) and (orientation3 != orientation4):
         result = True
 
     # check case 2) for each triplet
-    elif orientation1 == 0 and liesOnSegment(p1, q1, p2):
+    elif orientation1 == 0 and liesOnSegment(p1, p2, q1):
         result = True
-    elif (orientation2 == 0) and liesOnSegment(p1, q1, q2):
+    elif (orientation2 == 0) and liesOnSegment(p1, p2, q2):
         result = True
-    elif (orientation3 == 0) and liesOnSegment(p2, q2, p1):
+    elif (orientation3 == 0) and liesOnSegment(q1, q2, p1):
         result = True
-    elif (orientation4 == 0) and liesOnSegment(p2, q2, q1):
+    elif (orientation4 == 0) and liesOnSegment(q1, q2, p2):
         result = True
 
     return result
